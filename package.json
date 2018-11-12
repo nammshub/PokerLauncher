@@ -1,0 +1,25 @@
+{
+  "name": "pokerlauncher",
+  "version": "1.0.0",
+  "description": "Allows launching of poker games with parameters",
+  "main": "index.js",
+  "dependencies": {
+    "@types/node": "^10.12.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nammshub/PokerLauncher.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nammshub/PokerLauncher/issues"
+  },
+  "homepage": "https://github.com/nammshub/PokerLauncher#readme"
+}
