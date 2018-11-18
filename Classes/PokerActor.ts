@@ -1,24 +1,27 @@
-import { exec } from "child_process";
+import { spawn } from "child_process";
 
 export class PokerActor {
 
     _path: string;
     _execScript: string;
+    _execArgs: string;
 
-    constructor(path?: string, execScript?: string) {
+    constructor(path?: string, execScript?: string, execArgs?: string) {
         this._path = path || "";
         this._execScript = execScript || "";
+        this._execArgs = execArgs || "";
     }
     start() {
-        console.log(`cd ${this._path} && ${this._execScript}`);
-        //should start the game for this actor
-        exec(`cd ${this._path} && ${this._execScript}`, (error: Error, stdout: string, stderr: string) => {
-            if (error) {
-                console.error(`exec error: ${error}`);
-                return;
-            }
-            console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
+       const scriptNpmStart = spawn("cmd.exe", ["/c", `${this._execScript} ${this._execArgs}`], {cwd: this._path});
+        scriptNpmStart.stdout.on('data', (data) => {
+            console.log(`scriptNpmStart stdout: ${data}`);
+        });
+        scriptNpmStart.stderr.on('data', (data) => {
+            console.log(`scriptNpmStart stderr: ${data}`);
+        });
+
+        scriptNpmStart.on('close', (code) => {
+            console.log(`scriptNpmStart child process exited with code ${code}`);
         });
     };
 }
