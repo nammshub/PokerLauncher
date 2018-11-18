@@ -12,7 +12,7 @@ export class PokerActor {
         this._execArgs = execArgs || "";
     }
     start() {
-       const scriptNpmStart = spawn("cmd.exe", ["/c", `${this._execScript} ${this._execArgs}`], {cwd: this._path});
+        const scriptNpmStart = spawn("cmd.exe", ["/c", `${this._execScript} ${this._execArgs}`], { cwd: this._path });
         scriptNpmStart.stdout.on('data', (data) => {
             console.log(`scriptNpmStart stdout: ${data}`);
         });
@@ -23,5 +23,6 @@ export class PokerActor {
         scriptNpmStart.on('close', (code) => {
             console.log(`scriptNpmStart child process exited with code ${code}`);
         });
+
     };
 }

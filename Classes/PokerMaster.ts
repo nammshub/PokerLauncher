@@ -1,25 +1,42 @@
 import { Croupier } from "./Croupier"
 import { Player } from "./Player"
-import { IaAggressive } from "./IaAgressive";
-import { IaPassive } from "./IaPassive";
-import { IaDevTeam } from "./IaDevTeam";
+import { PlayerGenerator } from "./PlayerGenerator";
+import { EventEmitter } from "events";
+import { Config } from "./Config";
 
 
-export class PokerMaster {
+export class PokerMaster extends EventEmitter {
     _croupier: Croupier = new Croupier();
-    //_players: Array<Player>;
-    _iaAggressive: Player = new IaAggressive();
-    _iaPassive: Player = new IaPassive();
-    _iaDevTeam: Player = new IaDevTeam();
+    _players: Array<Player>;
+    _gamesPlayed: number;
 
+    constructor() {
+        super();
+        this._gamesPlayed = 0;
+    }
 
-    async launchGames() {
-        this._croupier.start();
+    launchGames() {
 
-        this._iaDevTeam.start();
-        this._iaAggressive.start();
-        this._iaPassive.start();
+        this._croupier.start(processPid => {
+            console.log(`reception du signal de fin pour le pid  ${processPid}`);
+            this.emit("game.end.signal");
+            this._gamesPlayed++;
+            this._croupier.end(processPid, endDone => {
+                console.log(`serveur croupier killed avec le code  ${endDone}`);
+                this.handleGameRestart();
+            })
+        });
+        this._players = PlayerGenerator.getRandomPlayers();
+        console.log(`la partie contient ${this._players.length} joueurs`);
+        for (let player of this._players) {
+            player.start();
+        }
+    }
 
+    handleGameRestart() {
 
+        if (this._gamesPlayed < Config.MAX_GAMES_ALLOWED) {
+            this.launchGames();
+        }
     }
 }

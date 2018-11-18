@@ -1,27 +1,32 @@
-export enum Config {
+export class Config {
+
+    //MAX_GAMES
+    static readonly MAX_GAMES_ALLOWED: number = 5;
+
+    //PLAYERS PARAMS
+    static readonly MAX_PLAYERS_ALLOWED: number = 5;
+    static readonly NBR_DIFFERENT_KIND_PLAYERS: number = 3; //DevTeam; Aggressive; Passive
 
     //CROUPIER
-    CROUPIER_DEFAULT_PATH = "C:/Users/dhain/WORKSPACE/poker",
-    CROUPIER_DEFAULT_EXEC = "npm",
-    CROUPIER_DEFAULT_EXEC_ARGS ="start",
+    static readonly CROUPIER_DEFAULT_PATH: string = "../poker";
+    static readonly CROUPIER_DEFAULT_EXEC: string = "npm";
+    static readonly CROUPIER_DEFAULT_EXEC_ARGS: string = "start";
 
     // IAS
 
     ////DEV TEAM
-    IA_DEVTEAM_DEFAULT_PATH = "C:/Users/dhain/WORKSPACE/poker-DevTeam",
-    IA_DEVTEAM_DEFAULT_EXEC = "npm",
-    IA_DEVTEAM_DEFAULT_EXEC_ARGS ="start",
+    static readonly IA_DEVTEAM_DEFAULT_PATH: string = "../poker-DevTeam";
+    static readonly IA_DEVTEAM_DEFAULT_EXEC: string = "npm";
+    static readonly IA_DEVTEAM_DEFAULT_EXEC_ARGS: string = "start";
 
-    //// IA AGRESSIVE
-    IA_AGGRESSIVE_DEFAULT_PATH = "C:/Users/dhain/WORKSPACE/tester",
-    IA_AGGRESSIVE_DEFAULT_EXEC = "npm",
-    IA_AGGRESSIVE_DEFAULT_EXEC_ARGS = "run start-aggressive",
-    
+    //// IA Aggressive
+    static readonly IA_AGGRESSIVE_DEFAULT_PATH: string = "../tester";
+    static readonly IA_AGGRESSIVE_DEFAULT_EXEC: string = "npm";
+    static readonly IA_AGGRESSIVE_DEFAULT_EXEC_ARGS: string = "run start-aggressive";
+
     //// IA PASSIVE
-    IA_PASSIVE_DEFAULT_PATH = "C:/Users/dhain/WORKSPACE/tester",
-    IA_PASSIVE_DEFAULT_EXEC = "npm",
-    IA_PASSIVE_DEFAULT_EXEC_ARGS = "run start-passive",
+    static readonly IA_PASSIVE_DEFAULT_PATH: string = "../tester";
+    static readonly IA_PASSIVE_DEFAULT_EXEC: string = "npm";
+    static readonly IA_PASSIVE_DEFAULT_EXEC_ARGS: string = "run start-passive";
 
-
-
-}
+};
