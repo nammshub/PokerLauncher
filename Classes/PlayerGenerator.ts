@@ -23,6 +23,12 @@ export class PlayerGenerator {
                 case 3:
                     iaName = "Passive";
                     break;
+                case 4:
+                    iaName = "Canards";
+                    break;
+                case 5:
+                    iaName = "Pickpoker";
+                    break;
             }
             players.push(PlayerFactoryGenerator.get(iaName).generatePlayer());
         }

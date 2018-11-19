@@ -2,6 +2,9 @@ import { PlayerFactory } from "./PlayerFactory"
 import { PlayerFactoryDevTeam } from "./PlayerFactoryDevTeam"
 import { PlayerFactoryAggressive } from "./PlayerFactoryAggressive"
 import { PlayerFactoryPassive } from "./PlayerFactoryPassive"
+import { PlayerFactoryCanards } from "./PlayerFactoryCanards"
+import { PlayerFactoryPickpoker } from "./PlayerFactoryPickpoker"
+
 
 
 
@@ -11,13 +14,14 @@ export class PlayerFactoryGenerator {
         switch (playerFactoryName) {
             case "DevTeam":
                 return PlayerFactoryDevTeam.getInstance();
-                break;
             case "Aggressive":
                 return PlayerFactoryAggressive.getInstance();
-                break;
             case "Passive":
                 return PlayerFactoryPassive.getInstance();
-                break;
+            case "Canards":
+                return PlayerFactoryCanards.getInstance();
+            case "Pickpoker":
+                return PlayerFactoryPickpoker.getInstance();
         }
     }
 }
